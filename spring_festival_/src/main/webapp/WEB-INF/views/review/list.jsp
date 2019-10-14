@@ -1,4 +1,4 @@
-<%@page import="com.spring.service.TogetherServiceImpl"%>
+<%@page import="com.spring.service.ReviewServiceImpl"%>
 <%@page import="org.springframework.context.annotation.Import"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

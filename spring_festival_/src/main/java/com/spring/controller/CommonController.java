@@ -16,9 +16,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spring.dao.MainPageDAO;
+import com.spring.dao.ReviewDAO;
+import com.spring.dao.TogetherDAO;
 import com.spring.dto.MemberVO;
+import com.spring.dto.ReviewVO;
+import com.spring.dto.TogetherVO;
 import com.spring.service.MailService;
+import com.spring.service.MainPageService;
 import com.spring.service.MemberService;
+import com.spring.service.ReviewService;
+import com.spring.service.TogetherService;
 
 @Controller
 @RequestMapping("/")
@@ -30,12 +38,20 @@ public class CommonController {
 	
 	@Autowired
     private MailService mailService;
+	
+	@Autowired
+	private MainPageService mainPageService;
 		
 	@RequestMapping("/main.htm")
-	public void main() {
+	public String main(Model model) throws Exception {
+		model.addAttribute("festivalFromRegist",mainPageService.FestivalListToMain());
+		model.addAttribute("reviewFromLike",mainPageService.LikeListToMain());
+		model.addAttribute("reviewFromRegist",mainPageService.ReviewListToMain());
+		model.addAttribute("festivalFromVote",mainPageService.Vote1ListToMain());
+		
+		return "common/main";
+		
 	}
-	
-	
 //	젝슨 데이터 바인드 중요!! 자파일 추가
 //	ResponseEntity는 json한테 에러를 보낼수 있다. 개발자코드 헤더 제너럴 스테이터스 코드 200(성공) 로 확인
 
@@ -218,6 +234,6 @@ public class CommonController {
 	public String memInfoCall() {
 		System.out.println("CommonController.memInfoCall(), memInfoCall.jsp를 리턴.");
 		return "/memInfo/memInfoCall";
-	}
+	}		
 	
 }

@@ -40,7 +40,10 @@
 		p:session-ref="sqlSession"/>
 	<bean id="festivalDAO" class="com.spring.dao.FestivalDAOImpl"
 		p:session-ref="sqlSession"/>
-		  
+	<bean id="attachDAO" class="com.spring.dao.AttachDAOImpl"
+		p:session-ref="sqlSession"/>	
+	<bean id="mainPageDAO" class="com.spring.dao.MainPageDAOImpl"
+		p:session-ref="sqlSession"/>	  
 		  
 	<!-- service -->	
 	<bean id="memberService"
@@ -64,7 +67,8 @@
 	<bean id="manageService" class="com.spring.service.ManageServiceImpl"
 		p:reportDAO-ref="reportDAO"
 		p:memberDAO-ref="memberDAO"/>
-	
+	<bean id="mainPageService" class="com.spring.service.MainPageServiceImpl"
+		p:mainPageDAO-ref="mainPageDAO"/>
 	<bean id="voteService"
 		  class="com.spring.service.VoteServiceImpl"
 		  p:voteDAO-ref="voteDAO"
